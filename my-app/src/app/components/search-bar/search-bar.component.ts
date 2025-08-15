@@ -12,4 +12,8 @@ export class SearchBarComponent {
     onPlaceInput(value: string) {
       this.placeChange.emit(value);
     }
+
+    resetInput() {
+      this.location = "";
+    }
 }

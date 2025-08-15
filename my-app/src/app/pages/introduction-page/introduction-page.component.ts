@@ -1,11 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { ApiService } from '../../services/api-service.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-introduction-page',
-  imports: [SearchBarComponent],
+  imports: [SearchBarComponent, NgClass],
   templateUrl: './introduction-page.component.html',
   styleUrl: './introduction-page.component.css',
 
@@ -14,16 +15,27 @@ export class IntroductionPageComponent {
   routerService = inject(Router);
   weatherService = inject(ApiService);
   info: any;
-  cities: string[] = [];
+  currentTemp: number = 0;
 
-  getInfo(location:any) {
-    this.weatherService.getWeather(location).subscribe({
+  getInfoWeather(location:any) {
+    this.weatherService.getCityCoord(location).subscribe({
       next: (info:any) => {
-        this.info = info;
-        //this.info = Math.round(info.main.temp) + " °C";
-        console.log(info);
+        let lat = info[0].lat;
+        let long = info[0].lon;
+        this.weatherService.getCityWeather(lat,long).subscribe({
+          next: (weatherInfo:any) => {
+            console.log(weatherInfo)
+            this.info = weatherInfo;
+            this.currentTemp = Math.ceil(weatherInfo.main.temp);
+          }
+        })
       }
     });
+  }
+  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;
+  reset() {
+    this.info = undefined;
+    this.searchBar.resetInput();
   }
 
 }

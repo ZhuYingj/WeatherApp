@@ -14,6 +14,7 @@
 }
 
 .container-info {
+    position: relative;
     background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #9398e2, #8b97e3, #8395e4, #8686df, #8d75d7, #9663cc, #a04dbe);
     width: 45%;
     height: auto;
@@ -25,7 +26,7 @@
     border-radius: 50px;
 }
 
-.container-info img{
+.gif-middle {
     height: 450px;
     width: 450px;
 }
@@ -33,4 +34,22 @@
 .current-temp {
     margin-top: 75px;
     height: 40px;
+}
+
+.welcome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.welcome:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.isActive {
+    margin-top: 25px;
 }

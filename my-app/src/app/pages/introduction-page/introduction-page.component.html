@@ -1,12 +1,14 @@
 <div class="container">
     <div class="container-info">
-        <img src="/assets/intro.gif" oncontextmenu="return false;">
-        <app-search-bar (placeChange)="getInfo($event)"></app-search-bar>
+        @if (!this.info) {
+            <img src="/assets/intro.gif" oncontextmenu="return false;" class="gif-middle">
+        }
+        <img src="/assets/hello.gif" oncontextmenu="return false;" class="welcome" (click)="reset()">
+        <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.info}"></app-search-bar>
         <div class="current-temp">
             @if (this.info) {
-                {{this.info[0].name}}
+                {{this.currentTemp + " °C"}}
             }
         </div>
-        
     </div>
 </div>
