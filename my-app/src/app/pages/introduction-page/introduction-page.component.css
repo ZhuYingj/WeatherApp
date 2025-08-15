@@ -16,8 +16,8 @@
 .container-info {
     position: relative;
     background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #9398e2, #8b97e3, #8395e4, #8686df, #8d75d7, #9663cc, #a04dbe);
-    width: 45%;
-    height: auto;
+    width: 35%;
+    height: 80%;
     display: flex;
     justify-items: center;
     align-items: center;
