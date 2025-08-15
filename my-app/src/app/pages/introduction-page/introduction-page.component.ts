@@ -23,7 +23,7 @@ export class IntroductionPageComponent {
   currentTempCondition: string = "";
   fadingDoneGif: boolean = false;
 
-  getInfoWeather(location:any) {
+  getInfoWeather(location:string) {
     this.weatherService.getCityCoord(location).subscribe({
       next: (info:any) => {
         let lat = info[0].lat;
@@ -71,4 +71,9 @@ export class IntroductionPageComponent {
     this.fadingDoneGif = false;
   }
 
+  searchWithIcon() {
+    if(this.searchBar.location !== "") {
+      this.getInfoWeather(this.searchBar.location);
+    } 
+  }
 }

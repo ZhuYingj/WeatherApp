@@ -62,13 +62,26 @@
     margin-bottom: 25px;
 }
 
-.welcome:hover {
+.welcome:hover, .search img:hover{
     transform: scale(1.05);
     cursor: pointer;
 }
 
 .isActive {
     margin-top: 25px;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+}
+
+.search img {
+    height: 50px;
+    width: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+    align-self: center;
 }
 
 .current-temp-info {
@@ -111,7 +124,7 @@ app-search-bar {
 
 .info-case {
   height: 150px;
-  width: 200px;
+  width: 300px;
   border-radius: 30px;
   background-color: rgba(0, 0, 0, 0.18);
 }

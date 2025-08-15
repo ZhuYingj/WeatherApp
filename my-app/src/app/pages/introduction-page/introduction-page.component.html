@@ -8,7 +8,12 @@
         @if (!this.info) {
             <label class="weather-app-label">Weather App</label>
         }
-        <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
+        <div>
+            <div class="search">
+                <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
+                <img src="/assets/searchIcon.png" (click)="searchWithIcon()">
+            </div>
+        </div>
         <div class="current-temp-info">
             @if (this.fadingDoneGif) {
                 <label class="location-name">{{this.info.name}}</label>
