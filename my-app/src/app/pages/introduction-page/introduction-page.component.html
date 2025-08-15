@@ -1,11 +1,13 @@
 <div class="container">
     <div class="container-info">
-        <img src="/assets/intro.gif" oncontextmenu="return false;" class="gif-middle" [ngClass]="{'city-selected' : this.info, 'done-fading' : this.fadingDone}">
-        <img src="/assets/hello.gif" oncontextmenu="return false;" class="welcome" (click)="reset()">
+        <img src="/assets/intro.gif" oncontextmenu="return false;"
+         class="gif-middle" [ngClass]="{'city-selected' : this.info, 'done-fading' : this.fadingDoneGif}">
+        <img src="/assets/hello.gif" oncontextmenu="return false;"
+         class="welcome" (click)="reset()">
         <label class="name">For doan</label>
-        <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.info}"></app-search-bar>
+        <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
         <div class="current-temp-info">
-            @if (this.info) {
+            @if (this.fadingDoneGif) {
                 <label class="location-name">{{this.info.name}}</label>
                 <div class="current-temp-img">
                     <label class="current-temp">{{this.currentTemp + "°"}}</label>
@@ -13,15 +15,19 @@
                 </div>
                 <label class="current-condition">{{this.currentTempCondition}}</label>
                 <label class="current-condition">↑ {{this.todayMaxTemp}}° ↓ {{this.todayMinTemp}}°</label>
+                <div class="info-wind-feel">
+                    <div class="info-case wind">
+                        <div class="container-wind-label">
+                            <img src="/assets/windIcon.png">
+                            <label>Wind</label>
+                        </div>
+                    </div>
+    
+                    <div class="info-case">
+    
+                    </div>
+                </div>
             }
-        </div>
-
-        <div class="feel-temp">
-
-        </div>
-
-        <div class="wind">
-
         </div>
     </div>
 </div>

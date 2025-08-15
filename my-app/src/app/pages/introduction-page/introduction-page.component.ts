@@ -19,47 +19,46 @@ export class IntroductionPageComponent {
   todayMaxTemp: number = 0;
   todayMinTemp: number = 0;
   currentTempCondition: string = "";
-  fadingDone: boolean = false;
+  fadingDoneGif: boolean = false;
 
   getInfoWeather(location:any) {
-    setTimeout(() => {
-      this.fadingDone = true;
-    }, 300);
-    setTimeout(()=>{
-      this.weatherService.getCityCoord(location).subscribe({
-        next: (info:any) => {
-          let lat = info[0].lat;
-          let long = info[0].lon;
-          this.weatherService.getCurrentCityWeather(lat,long).subscribe({
-            next: (weatherInfo:any) => {
-              console.log(weatherInfo)
-              this.info = weatherInfo;
-              this.currentTemp = Math.ceil(weatherInfo.main.temp);
-              this.currentTempCondition = this.info.weather[0].main;
-            }
-          });
-          this.weatherService.getHourlyForecastWeather(lat,long).subscribe({
-            next: (hourlyWeatherInfo:any) => {
-              console.log(hourlyWeatherInfo);
-            }
-          })
+    this.weatherService.getCityCoord(location).subscribe({
+      next: (info:any) => {
+        let lat = info[0].lat;
+        let long = info[0].lon;
+        this.weatherService.getCurrentCityWeather(lat,long).subscribe({
+          next: (weatherInfo:any) => {
+            console.log(weatherInfo)
+            this.info = weatherInfo;
+            this.currentTemp = Math.ceil(weatherInfo.main.temp);
+            this.currentTempCondition = this.info.weather[0].main;
+            setTimeout(() => {
+              this.fadingDoneGif = true;
+              this.weatherService.getHourlyForecastWeather(lat,long).subscribe({
+                next: (hourlyWeatherInfo:any) => {
+                  //console.log(hourlyWeatherInfo);
+                }
+              })
 
-          this.weatherService.getDailyForecastWeather(lat,long).subscribe({
-            next: (dailyForecastInfo:any) => {
-              this.todayMaxTemp = Math.ceil(dailyForecastInfo.list[0].temp.max);
-              this.todayMinTemp = Math.ceil(dailyForecastInfo.list[0].temp.min);
-              console.log(dailyForecastInfo);
-            }
-          })
-        }
-      });
-    },450);
+              this.weatherService.getDailyForecastWeather(lat,long).subscribe({
+                next: (dailyForecastInfo:any) => {
+                  this.todayMaxTemp = Math.ceil(dailyForecastInfo.list[0].temp.max);
+                  this.todayMinTemp = Math.ceil(dailyForecastInfo.list[0].temp.min);
+                  //console.log(dailyForecastInfo);
+                }
+              })
+
+            }, 300);
+          }
+        });
+      }
+    });
   }
   @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;
   reset() {
     this.info = undefined;
     this.searchBar.resetInput();
-    this.fadingDone = false;
+    this.fadingDoneGif = false;
   }
 
 }

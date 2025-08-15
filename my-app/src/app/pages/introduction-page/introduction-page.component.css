@@ -14,7 +14,7 @@
 
 .container-info {
     position: relative;
-    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #9398e2, #8b97e3, #8395e4, #8686df, #8d75d7, #9663cc, #a04dbe);
+    background-image: linear-gradient(to right top, #ff9bdd, #f690ac, #dd8b87, #be8871, #9d8367);
     width: 35%;
     height: 80%;
     display: flex;
@@ -54,7 +54,7 @@
     bottom: 0;
     text-align: center;
     font-size: 16px;
-    font-style: oblique;
+    font-style: italic;
 }
 
 .welcome:hover {
@@ -69,6 +69,7 @@
 .current-temp-info {
     margin-top: 50px;
     height: 350px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -89,4 +90,35 @@
 
 .current-condition {
     font-size: 25px;
+}
+
+app-search-bar {
+    margin-top: 25px;
+    opacity: 1;
+}
+
+.info-wind-feel {
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+   
+}
+
+.info-case {
+  height: 150px;
+  width: 200px;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.18);
+}
+
+.container-wind-label {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.wind img {
+    height: 50px;
+    width: auto;
 }
