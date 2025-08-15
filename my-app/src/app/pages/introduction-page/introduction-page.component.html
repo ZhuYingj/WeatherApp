@@ -1,8 +1,7 @@
 <div class="container">
     <div class="container-info">
-        @if (!this.info) {
-            <img src="/assets/intro.gif" oncontextmenu="return false;" class="gif-middle">
-        }
+
+        <img src="/assets/intro.gif" oncontextmenu="return false;" class="gif-middle" [ngClass]="{'city-selected' : this.info, 'done-fading' : this.fadingDone}">
         <img src="/assets/hello.gif" oncontextmenu="return false;" class="welcome" (click)="reset()">
         <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.info}"></app-search-bar>
         <div class="current-temp">

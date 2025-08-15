@@ -16,8 +16,12 @@ export class IntroductionPageComponent {
   weatherService = inject(ApiService);
   info: any;
   currentTemp: number = 0;
+  fadingDone: boolean = false;
 
   getInfoWeather(location:any) {
+    setTimeout(() => {
+      this.fadingDone = true;
+    }, 300);
     this.weatherService.getCityCoord(location).subscribe({
       next: (info:any) => {
         let lat = info[0].lat;
@@ -36,6 +40,7 @@ export class IntroductionPageComponent {
   reset() {
     this.info = undefined;
     this.searchBar.resetInput();
+    this.fadingDone = false;
   }
 
 }
