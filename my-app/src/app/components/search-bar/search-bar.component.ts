@@ -10,7 +10,10 @@ export class SearchBarComponent {
     @Output() placeChange: EventEmitter<string> = new EventEmitter<string>();
     location = "";
     onPlaceInput(value: string) {
-      this.placeChange.emit(value);
+      if(this.location !== "") {
+        this.placeChange.emit(value);
+        this.location = "";
+      }
     }
 
     resetInput() {

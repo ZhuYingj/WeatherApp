@@ -1,13 +1,27 @@
 <div class="container">
     <div class="container-info">
-
         <img src="/assets/intro.gif" oncontextmenu="return false;" class="gif-middle" [ngClass]="{'city-selected' : this.info, 'done-fading' : this.fadingDone}">
         <img src="/assets/hello.gif" oncontextmenu="return false;" class="welcome" (click)="reset()">
+        <label class="name">For doan</label>
         <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.info}"></app-search-bar>
-        <div class="current-temp">
+        <div class="current-temp-info">
             @if (this.info) {
-                {{this.currentTemp + " °C"}}
+                <label class="location-name">{{this.info.name}}</label>
+                <div class="current-temp-img">
+                    <label class="current-temp">{{this.currentTemp + "°"}}</label>
+                    <img src="https://openweathermap.org/img/wn/{{ this.info.weather[0].icon }}@2x.png">
+                </div>
+                <label class="current-condition">{{this.currentTempCondition}}</label>
+                <label class="current-condition">↑ {{this.todayMaxTemp}}° ↓ {{this.todayMinTemp}}°</label>
             }
+        </div>
+
+        <div class="feel-temp">
+
+        </div>
+
+        <div class="wind">
+
         </div>
     </div>
 </div>
