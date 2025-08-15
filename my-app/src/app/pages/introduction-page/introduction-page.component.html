@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="container-info">
+        <img src="/assets/intro.gif" oncontextmenu="return false;">
+        <app-search-bar (placeChange)="getInfo($event)"></app-search-bar>
+        <div class="current-temp">
+            @if (this.info) {
+                {{this.info[0].name}}
+            }
+        </div>
+        
+    </div>
+</div>
