@@ -5,6 +5,9 @@
         <img src="/assets/hello.gif" oncontextmenu="return false;"
          class="welcome" (click)="reset()">
         <label class="name">For doan</label>
+        @if (!this.info) {
+            <label class="weather-app-label">Weather App</label>
+        }
         <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
         <div class="current-temp-info">
             @if (this.fadingDoneGif) {
@@ -20,6 +23,18 @@
                         <div class="container-wind-label">
                             <img src="/assets/windIcon.png">
                             <label>Wind</label>
+                        </div>
+                        <div class="wind-info">
+                            <label>Speed</label>
+                            <label>{{this.info.wind.speed}} meter/s</label>
+                        </div>
+                        <div class="wind-info">
+                            <label>Direction</label>
+                            <label>{{this.info.wind.deg}}°</label>
+                        </div>
+                        <div class="wind-info">
+                            <label>Gust</label>
+                            <label>{{this.info.wind.gust}} meter/s</label>
                         </div>
                     </div>
     
