@@ -122,7 +122,7 @@ app-search-bar {
     justify-content: center;
 }
 
-.wind img {
+.info-case img {
     height: 50px;
     width: auto;
 }
@@ -131,4 +131,12 @@ app-search-bar {
     display: flex;
     justify-content: space-between;
     margin: 8px;
+    border-bottom: 2px solid rgb(0, 0, 0, 0.1);
+    border-bottom-style:groove;
+}
+
+.feel-like-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

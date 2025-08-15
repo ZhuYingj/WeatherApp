@@ -18,6 +18,8 @@ export class IntroductionPageComponent {
   currentTemp: number = 0;
   todayMaxTemp: number = 0;
   todayMinTemp: number = 0;
+  currentFeelsLike: number = 0;
+  currentFeelText: string = "";
   currentTempCondition: string = "";
   fadingDoneGif: boolean = false;
 
@@ -30,8 +32,16 @@ export class IntroductionPageComponent {
           next: (weatherInfo:any) => {
             console.log(weatherInfo)
             this.info = weatherInfo;
-            this.currentTemp = Math.ceil(weatherInfo.main.temp);
+            this.currentTemp = Math.round(weatherInfo.main.temp);
             this.currentTempCondition = this.info.weather[0].main;
+            this.currentFeelsLike = Math.round(weatherInfo.main.feels_like);
+            if(this.currentFeelsLike > this.currentTemp) {
+              this.currentFeelText = "The perceived temperature is warmer."
+            } else if( this.currentFeelsLike === this.currentTemp ) {
+              this.currentFeelText = "The perceived temperature is the same as the real temperature."
+            } else {
+              this.currentFeelText = "The perceived temperature is colder."
+            }
             setTimeout(() => {
               this.fadingDoneGif = true;
               this.weatherService.getHourlyForecastWeather(lat,long).subscribe({
@@ -42,8 +52,8 @@ export class IntroductionPageComponent {
 
               this.weatherService.getDailyForecastWeather(lat,long).subscribe({
                 next: (dailyForecastInfo:any) => {
-                  this.todayMaxTemp = Math.ceil(dailyForecastInfo.list[0].temp.max);
-                  this.todayMinTemp = Math.ceil(dailyForecastInfo.list[0].temp.min);
+                  this.todayMaxTemp = Math.round(dailyForecastInfo.list[0].temp.max);
+                  this.todayMinTemp = Math.round(dailyForecastInfo.list[0].temp.min);
                   //console.log(dailyForecastInfo);
                 }
               })
