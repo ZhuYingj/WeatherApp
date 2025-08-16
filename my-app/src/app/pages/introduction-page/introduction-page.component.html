@@ -1,7 +1,7 @@
 <div class="container">
     <div class="container-info"  [ngStyle]="{'background-image': nextBackground, 'background-size': 'cover',
        'background-position': 'center'}">
-        <img src="/assets/helloKittyHomeButton.png" oncontextmenu="return false;" draggable="false"
+        <img src="./assets/helloKittyHomeButton.png" oncontextmenu="return false;" draggable="false"
          class="welcome" (click)="onDebouncedClick()">
         <label class="name">for doan</label>
         @if (!this.fadingDoneGif) {
@@ -21,12 +21,12 @@
         <div>
             <div class="search" [ngClass]="{'city-not-selected' : !this.info}">
                 <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
-                <img src="/assets/searchIcon.png" (click)="searchWithIcon()" draggable="false">
+                <img src="./assets/searchIcon.png" (click)="searchWithIcon()" draggable="false">
             </div>
         </div>
 
         @if (this.fadingDoneGif) {
-                <div class="current-temp-info">
+            <div class="current-temp-info">
                 <label class="location-name">{{this.info.name}}</label>
                 <div class="current-temp-img">
                     <label class="current-temp">{{this.currentTemp + "°"}}</label>
@@ -37,7 +37,7 @@
                 <div class="info-wind-feel">
                     <div class="info-case wind">
                         <div class="container-wind-label">
-                            <img src="/assets/windIcon.png" draggable="false">
+                            <img src="./assets/windIcon.png" draggable="false">
                             <label>Wind</label>
                         </div>
                         <div class="wind-info">
@@ -56,7 +56,7 @@
     
                     <div class="info-case">
                         <div class="container-wind-label">
-                            <img src="/assets/thermometer.png" draggable="false">
+                            <img src="./assets/thermometer.png" draggable="false">
                             <label>Feel temperature</label>
                         </div>
                         <div class="feel-like-info">

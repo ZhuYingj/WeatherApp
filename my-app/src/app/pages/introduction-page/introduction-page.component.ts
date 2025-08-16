@@ -30,15 +30,15 @@ export class IntroductionPageComponent {
   listTemp7Days: any[] = [];
 
   images = [
-    'url(/assets/hellokitty2.jpg)',
-    'url(/assets/hellokitty1.jpg)',
-    'url(/assets/hellokitty3.jpg)',
-    'url(/assets/hellokitty4.jpg)',
-    'url(/assets/hellokitty5.jpg)',
-    'url(/assets/hellokitty6.jpg)',
-    'url(/assets/hellokitty7.jpg)',
-    'url(/assets/hellokitty8.jpg)',
-    'url(/assets/hellokitty9.jpg)',
+    'url(./assets/hellokitty2.jpg)',
+    'url(./assets/hellokitty1.jpg)',
+    'url(./assets/hellokitty3.jpg)',
+    'url(./assets/hellokitty4.jpg)',
+    'url(./assets/hellokitty5.jpg)',
+    'url(./assets/hellokitty6.jpg)',
+    'url(./assets/hellokitty7.jpg)',
+    'url(./assets/hellokitty8.jpg)',
+    'url(./assets/hellokitty9.jpg)',
   ];
   currentIndex = 0;
 
