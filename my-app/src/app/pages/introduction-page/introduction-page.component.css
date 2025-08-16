@@ -159,7 +159,7 @@ app-search-bar {
     height: 100%;
     width: 300px;
     border-radius: 30px;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .container-wind-label {
@@ -222,4 +222,13 @@ app-search-bar {
     align-items: center;
     justify-content: space-between;
     width: 35%;
+}
+
+.predictions {
+    margin-top: 25px;
+    overflow-y: auto;
+}
+
+.predictions::-webkit-scrollbar {
+  display: none;
 }

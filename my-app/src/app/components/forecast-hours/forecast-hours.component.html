@@ -1,0 +1,11 @@
+@if(this.listForecast.length > 0) {
+    <div #scrollContainer class="hourly-forecast">
+    @for (hour of this.listForecast; track $index){
+            <div class="hour">
+                <label>{{ hour.dt_txt | date:'h a' }}</label>
+                <img src="https://openweathermap.org/img/wn/{{ hour.weather[0].icon }}@2x.png" draggable="false">
+                <span>{{ hour.main.temp | number:'1.0-0'}}°C</span>
+            </div>
+        }
+    </div>
+}

@@ -3,13 +3,15 @@ import { Router } from '@angular/router';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { ApiService } from '../../services/api-service.service';
 import { NgClass } from '@angular/common';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { ForecastHoursComponent } from '../../components/forecast-hours/forecast-hours.component';
+import { UtilsService } from '../../services/utils.service';
 @Component({
   selector: 'app-introduction-page',
-  imports: [SearchBarComponent, NgClass, MatProgressBarModule, CommonModule],
+  imports: [SearchBarComponent, NgClass, MatProgressBarModule, CommonModule, ForecastHoursComponent],
   templateUrl: './introduction-page.component.html',
   styleUrl: './introduction-page.component.css',
 
@@ -18,6 +20,7 @@ export class IntroductionPageComponent {
   private clickSubject = new Subject<void>();
   routerService = inject(Router);
   weatherService = inject(ApiService);
+  utilsService = inject(UtilsService);
   info: any;
   currentTemp: number = 0;
   todayMaxTemp: number = 0;
@@ -28,12 +31,14 @@ export class IntroductionPageComponent {
   fadingDoneGif: boolean = false;
   next7Days: string[] = [];
   listTemp7Days: any[] = [];
+  dayForecastHours: any[] = [];
 
   images = [
     'url(./assets/hellokitty2.jpg)',
-    'url(./assets/hellokitty1.jpg)',
+    'url(./assets/hangyodon.jpg)',
     'url(./assets/hellokitty3.jpg)',
     'url(./assets/hellokitty4.jpg)',
+    'url(./assets/hangyodon2.jpg)',
     'url(./assets/hellokitty5.jpg)',
     'url(./assets/hellokitty6.jpg)',
     'url(./assets/hellokitty7.jpg)',
@@ -63,7 +68,7 @@ export class IntroductionPageComponent {
   }
 
   getInfoWeather(location:string) {
-    this.next7Days = this.getNextSevenDays();
+    this.next7Days = this.utilsService.getNextSevenDays();
     if(this.fadingDoneGif) {
       this.updateBackground();
     }
@@ -73,7 +78,6 @@ export class IntroductionPageComponent {
         let long = info[0].lon;
         this.weatherService.getCurrentCityWeather(lat,long).subscribe({
           next: (weatherInfo:any) => {
-            //console.log(weatherInfo)
             this.info = weatherInfo;
             this.currentTemp = Math.round(weatherInfo.main.temp);
             this.currentTempCondition = this.info.weather[0].main;
@@ -85,11 +89,12 @@ export class IntroductionPageComponent {
             } else {
               this.currentFeelText = "The perceived temperature is colder."
             }
-            setTimeout(() => {
+            setTimeout(() => {
               this.fadingDoneGif = true;
               this.weatherService.getHourlyForecastWeather(lat,long).subscribe({
                 next: (hourlyWeatherInfo:any) => {
-                  //console.log(hourlyWeatherInfo);
+                  console.log(hourlyWeatherInfo);
+                  this.dayForecastHours = hourlyWeatherInfo.list;
                 }
               })
 
@@ -100,7 +105,6 @@ export class IntroductionPageComponent {
                   for(let i = 0; i < 7; i++) {
                     this.listTemp7Days[i] = dailyForecastInfo.list[i];
                   }
-                  console.log(dailyForecastInfo);
                 }
               })
 
@@ -123,19 +127,4 @@ export class IntroductionPageComponent {
       this.searchBar.resetInput();
     } 
   }
-
-  getNextSevenDays(): string[] {
-    const days: string[] = [];
-    const today = new Date();
-
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-
-      const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
-      days.push(dayName);
-    }
-    return days;
-  }
-
 }

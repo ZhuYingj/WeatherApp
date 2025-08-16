@@ -50,7 +50,7 @@
                         </div>
                         <div class="wind-info">
                             <label>Gust</label>
-                            <label>{{this.info.wind.gust}} meter/s</label>
+                            <label>{{this.info.wind.gust ?? 0}} meter/s</label>
                         </div>
                     </div>
     
@@ -66,27 +66,30 @@
                     </div>
                 </div>
             </div>
-            <div class="week-prediction">
-                <label class="title-prediction">Prediction for the next 7 days</label>
-                @for(day of this.next7Days; track $index) {
-                    <div class="day">
-                        <div class="left-side">
-                            @if($index === 0) {
-                                <label>Today</label>
-                            } @else {
-                                <label>{{day}}</label>
-                            }
-                            <img src="https://openweathermap.org/img/wn/{{ this.listTemp7Days[$index].weather[0].icon }}@2x.png" draggable="false">
+            <div class="predictions">
+                <app-forecast-hours [listForecast]="dayForecastHours"></app-forecast-hours>
+                <div class="week-prediction">
+                    <label class="title-prediction">Prediction for the next 7 days</label>
+                    @for(day of this.next7Days; track $index) {
+                        <div class="day">
+                            <div class="left-side">
+                                @if($index === 0) {
+                                    <label>Today</label>
+                                } @else {
+                                    <label>{{day}}</label>
+                                }
+                                <img src="https://openweathermap.org/img/wn/{{ this.listTemp7Days[$index].weather[0].icon }}@2x.png" draggable="false">
+                            </div>
+                            <div class="right-side">
+                                <label>{{+this.listTemp7Days[$index].temp.min | number:'1.0-0'}}°</label>
+                                <mat-progress-bar mode="determinate"
+                                [value]="(((this.listTemp7Days[$index].temp.day) + (this.listTemp7Days[$index].temp.night))/2 * 100) / this.listTemp7Days[$index].temp.max" 
+                                class="custom-progress"></mat-progress-bar>
+                                <label>{{+this.listTemp7Days[$index].temp.max | number:'1.0-0'}}°</label>
+                            </div>
                         </div>
-                        <div class="right-side">
-                            <label>{{+this.listTemp7Days[$index].temp.min | number:'1.0-0'}}°</label>
-                            <mat-progress-bar mode="determinate"
-                            [value]="(((this.listTemp7Days[$index].temp.day) + (this.listTemp7Days[$index].temp.night))/2 * 100) / this.listTemp7Days[$index].temp.max" 
-                            class="custom-progress"></mat-progress-bar>
-                            <label>{{+this.listTemp7Days[$index].temp.max | number:'1.0-0'}}°</label>
-                        </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         }
     </div>
