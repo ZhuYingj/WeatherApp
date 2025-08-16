@@ -44,4 +44,4 @@ Thumbs.db
 #ApiKey
 /src/app/environnement.ts
 
-WeatherApp-win32-x64
+/WeatherApp-win32-x64
