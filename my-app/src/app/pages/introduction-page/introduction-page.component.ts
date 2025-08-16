@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { ApiService } from '../../services/api-service.service';
 import { NgClass } from '@angular/common';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-introduction-page',
-  imports: [SearchBarComponent, NgClass],
+  imports: [SearchBarComponent, NgClass, MatProgressBarModule, CommonModule],
   templateUrl: './introduction-page.component.html',
   styleUrl: './introduction-page.component.css',
 
@@ -22,15 +23,18 @@ export class IntroductionPageComponent {
   currentFeelText: string = "";
   currentTempCondition: string = "";
   fadingDoneGif: boolean = false;
+  next7Days: string[] = [];
+  listTemp7Days: any[] = [];
 
   getInfoWeather(location:string) {
+    this.next7Days = this.getNextSevenDays();
     this.weatherService.getCityCoord(location).subscribe({
       next: (info:any) => {
         let lat = info[0].lat;
         let long = info[0].lon;
         this.weatherService.getCurrentCityWeather(lat,long).subscribe({
           next: (weatherInfo:any) => {
-            console.log(weatherInfo)
+            //console.log(weatherInfo)
             this.info = weatherInfo;
             this.currentTemp = Math.round(weatherInfo.main.temp);
             this.currentTempCondition = this.info.weather[0].main;
@@ -54,7 +58,10 @@ export class IntroductionPageComponent {
                 next: (dailyForecastInfo:any) => {
                   this.todayMaxTemp = Math.round(dailyForecastInfo.list[0].temp.max);
                   this.todayMinTemp = Math.round(dailyForecastInfo.list[0].temp.min);
-                  //console.log(dailyForecastInfo);
+                  for(let i = 0; i < 7; i++) {
+                    this.listTemp7Days[i] = dailyForecastInfo.list[i].temp;
+                  }
+                  console.log(dailyForecastInfo);
                 }
               })
 
@@ -74,6 +81,23 @@ export class IntroductionPageComponent {
   searchWithIcon() {
     if(this.searchBar.location !== "") {
       this.getInfoWeather(this.searchBar.location);
+      this.searchBar.resetInput();
     } 
   }
+
+  getNextSevenDays(): string[] {
+    const days: string[] = [];
+    const today = new Date();
+
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+
+      const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
+      days.push(dayName);
+    }
+    console.log(days)
+    return days;
+  }
+
 }

@@ -1,32 +1,32 @@
 <div class="container">
     <div class="container-info">
-        <img src="/assets/intro.gif" oncontextmenu="return false;"
+        <img src="/assets/intro.gif" oncontextmenu="return false;" draggable="false"
          class="gif-middle" [ngClass]="{'city-selected' : this.info, 'done-fading' : this.fadingDoneGif}">
-        <img src="/assets/hello.gif" oncontextmenu="return false;"
+        <img src="/assets/hello.gif" oncontextmenu="return false;" draggable="false"
          class="welcome" (click)="reset()">
-        <label class="name">For doan</label>
-        @if (!this.info) {
+        <label class="name">for doan</label>
+        @if (!this.fadingDoneGif) {
             <label class="weather-app-label">Weather App</label>
         }
         <div>
             <div class="search">
                 <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
-                <img src="/assets/searchIcon.png" (click)="searchWithIcon()">
+                <img src="/assets/searchIcon.png" (click)="searchWithIcon()" draggable="false">
             </div>
         </div>
-        <div class="current-temp-info">
-            @if (this.fadingDoneGif) {
+        @if (this.fadingDoneGif) {
+                <div class="current-temp-info">
                 <label class="location-name">{{this.info.name}}</label>
                 <div class="current-temp-img">
                     <label class="current-temp">{{this.currentTemp + "°"}}</label>
-                    <img src="https://openweathermap.org/img/wn/{{ this.info.weather[0].icon }}@2x.png">
+                    <img src="https://openweathermap.org/img/wn/{{ this.info.weather[0].icon }}@2x.png" draggable="false">
                 </div>
                 <label class="current-condition">{{this.currentTempCondition}}</label>
                 <label class="current-condition">↑ {{this.todayMaxTemp}}° ↓ {{this.todayMinTemp}}°</label>
                 <div class="info-wind-feel">
                     <div class="info-case wind">
                         <div class="container-wind-label">
-                            <img src="/assets/windIcon.png">
+                            <img src="/assets/windIcon.png" draggable="false">
                             <label>Wind</label>
                         </div>
                         <div class="wind-info">
@@ -45,7 +45,7 @@
     
                     <div class="info-case">
                         <div class="container-wind-label">
-                            <img src="/assets/thermometer.png">
+                            <img src="/assets/thermometer.png" draggable="false">
                             <label>Feel temperature</label>
                         </div>
                         <div class="feel-like-info">
@@ -54,7 +54,29 @@
                         </div>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+            <div class="week-prediction">
+                <label class="title-prediction">Prediction for the next 7 days</label>
+                @for(day of this.next7Days; track $index) {
+                    <div class="day">
+                        <div class="left-side">
+                            @if($index === 0) {
+                                <label>Today</label>
+                            } @else {
+                                <label>{{day}}</label>
+                            }
+                            <img src="https://openweathermap.org/img/wn/{{ this.info.weather[0].icon }}@2x.png" draggable="false">
+                        </div>
+                        <div class="right-side">
+                            <label>{{+this.listTemp7Days[$index].min | number:'1.0-0'}}°</label>
+                            <mat-progress-bar mode="determinate"
+                            [value]="(((this.listTemp7Days[$index].day) + (this.listTemp7Days[$index].night))/2 * 100) / this.listTemp7Days[$index].max" 
+                            class="custom-progress"></mat-progress-bar>
+                            <label>{{+this.listTemp7Days[$index].max | number:'1.0-0'}}°</label>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
     </div>
 </div>

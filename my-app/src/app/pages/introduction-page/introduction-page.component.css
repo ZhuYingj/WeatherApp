@@ -16,7 +16,7 @@
     position: relative;
     background-image: linear-gradient(to right top, #ff9bdd, #f690ac, #dd8b87, #be8871, #9d8367);
     width: 35%;
-    height: 80%;
+    height: 100%;
     display: flex;
     justify-items: center;
     align-items: center;
@@ -86,7 +86,6 @@
 
 .current-temp-info {
     margin-top: 50px;
-    height: 350px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -116,17 +115,18 @@ app-search-bar {
 }
 
 .info-wind-feel {
-    height: 250px;
+    margin-top: 25px;
+    height: 150px;
     width: 100%;
     display: flex;
     justify-content: space-evenly;
 }
 
 .info-case {
-  height: 150px;
-  width: 300px;
-  border-radius: 30px;
-  background-color: rgba(0, 0, 0, 0.18);
+    height: 100%;
+    width: 300px;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.18);
 }
 
 .container-wind-label {
@@ -152,4 +152,41 @@ app-search-bar {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.week-prediction {
+    margin-top: 25px;
+    width: 610px;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.18);
+    align-self: center;
+}
+
+.day {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.day img {
+    height: 40px;
+    width: auto;
+    align-self: center;
+}
+
+.mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: rgb(240, 7, 104);
+  --mdc-linear-progress-track-color: lightgray;
+}
+.custom-progress {
+  width: 150px;
+}
+
+.left-side, .right-side {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 35%;
 }
