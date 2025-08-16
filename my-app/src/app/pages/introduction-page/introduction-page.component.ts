@@ -55,6 +55,13 @@ export class IntroductionPageComponent {
     });
   }
 
+  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;
+  reset() {
+    this.info = undefined;
+    this.searchBar.resetInput();
+    this.fadingDoneGif = false;
+  }
+
   onDebouncedClick() {
     this.clickSubject.next();
   }
@@ -64,7 +71,14 @@ export class IntroductionPageComponent {
   }
 
   updateBackground() {
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
+
+   searchWithIcon() {
+    if(this.searchBar.location !== "") {
+      this.getInfoWeather(this.searchBar.location);
+      this.searchBar.resetInput();
+    } 
   }
 
   getInfoWeather(location:string) {
@@ -78,53 +92,46 @@ export class IntroductionPageComponent {
         let long = info[0].lon;
         this.weatherService.getCurrentCityWeather(lat,long).subscribe({
           next: (weatherInfo:any) => {
-            this.info = weatherInfo;
-            this.currentTemp = Math.round(weatherInfo.main.temp);
-            this.currentTempCondition = this.info.weather[0].main;
-            this.currentFeelsLike = Math.round(weatherInfo.main.feels_like);
-            if(this.currentFeelsLike > this.currentTemp) {
-              this.currentFeelText = "The perceived temperature is warmer."
-            } else if( this.currentFeelsLike === this.currentTemp ) {
-              this.currentFeelText = "The perceived temperature is the same as the real temperature."
-            } else {
-              this.currentFeelText = "The perceived temperature is colder."
-            }
-            setTimeout(() => {
-              this.fadingDoneGif = true;
-              this.weatherService.getHourlyForecastWeather(lat,long).subscribe({
-                next: (hourlyWeatherInfo:any) => {
-                  console.log(hourlyWeatherInfo);
-                  this.dayForecastHours = hourlyWeatherInfo.list;
-                }
-              })
-
-              this.weatherService.getDailyForecastWeather(lat,long).subscribe({
-                next: (dailyForecastInfo:any) => {
-                  this.todayMaxTemp = Math.round(dailyForecastInfo.list[0].temp.max);
-                  this.todayMinTemp = Math.round(dailyForecastInfo.list[0].temp.min);
-                  for(let i = 0; i < 7; i++) {
-                    this.listTemp7Days[i] = dailyForecastInfo.list[i];
-                  }
-                }
-              })
-
-            }, 300);
+            this.getCurrentCityWeather(weatherInfo,lat,long);
           }
         });
       }
     });
   }
-  @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;
-  reset() {
-    this.info = undefined;
-    this.searchBar.resetInput();
-    this.fadingDoneGif = false;
+
+  getCurrentCityWeather(weatherInfo:any, lat:string, long:string) {
+    this.info = weatherInfo;
+      this.currentTemp = Math.round(weatherInfo.main.temp);
+      this.currentTempCondition = this.info.weather[0].main;
+      this.currentFeelsLike = Math.round(weatherInfo.main.feels_like);
+      if(this.currentFeelsLike > this.currentTemp) {
+        this.currentFeelText = "The perceived temperature is warmer."
+      } else if( this.currentFeelsLike === this.currentTemp ) {
+        this.currentFeelText = "The perceived temperature is the same as the real temperature."
+      } else {
+        this.currentFeelText = "The perceived temperature is colder."
+      }
+      this.getDailyAndHourlyForecast(lat,long);
   }
 
-  searchWithIcon() {
-    if(this.searchBar.location !== "") {
-      this.getInfoWeather(this.searchBar.location);
-      this.searchBar.resetInput();
-    } 
+  getDailyAndHourlyForecast(lat:string, long:string) {
+    setTimeout(() => {
+      this.fadingDoneGif = true;
+      this.weatherService.getHourlyForecastWeather(lat,long).subscribe({
+        next: (hourlyWeatherInfo:any) => {
+          this.dayForecastHours = hourlyWeatherInfo.list;
+        }
+      })
+
+      this.weatherService.getDailyForecastWeather(lat,long).subscribe({
+        next: (dailyForecastInfo:any) => {
+          this.todayMaxTemp = Math.round(dailyForecastInfo.list[0].temp.max);
+          this.todayMinTemp = Math.round(dailyForecastInfo.list[0].temp.min);
+          for(let i = 0; i < 7; i++) {
+            this.listTemp7Days[i] = dailyForecastInfo.list[i];
+          }
+        }
+      })
+    }, 300);
   }
 }
