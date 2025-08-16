@@ -16,7 +16,7 @@
     position: relative;
     background-image: linear-gradient(to right top, #ff9bdd, #f690ac, #dd8b87, #be8871, #9d8367);
     width: 35%;
-    height: 100%;
+    height: 95%;
     display: flex;
     justify-items: center;
     align-items: center;
@@ -109,13 +109,13 @@
 }
 
 .current-temp-info {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.35);
     border-radius: 50px;
-    margin-top: 50px;
-    width: 100%;
+    width: 610px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-bottom: 20px;
 }
 
 .current-temp {
@@ -144,6 +144,7 @@ app-search-bar {
     position: absolute;
     top: 75%;
     left: 25%;
+    margin-top: 25px;
 }
 
 .info-wind-feel {

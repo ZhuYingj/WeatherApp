@@ -5,6 +5,8 @@ import { ApiService } from '../../services/api-service.service';
 import { NgClass } from '@angular/common';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'app-introduction-page',
   imports: [SearchBarComponent, NgClass, MatProgressBarModule, CommonModule],
@@ -13,6 +15,7 @@ import { CommonModule } from '@angular/common';
 
 })
 export class IntroductionPageComponent {
+  private clickSubject = new Subject<void>();
   routerService = inject(Router);
   weatherService = inject(ApiService);
   info: any;
@@ -38,6 +41,18 @@ export class IntroductionPageComponent {
     'url(/assets/hellokitty9.jpg)',
   ];
   currentIndex = 0;
+
+  constructor() {
+    this.clickSubject.pipe(
+      debounceTime(500)
+    ).subscribe(() => {
+      this.reset();
+    });
+  }
+
+  onDebouncedClick() {
+    this.clickSubject.next();
+  }
 
   get nextBackground() {
     return this.images[this.currentIndex % this.images.length];
