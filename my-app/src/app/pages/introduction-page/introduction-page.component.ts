@@ -26,8 +26,32 @@ export class IntroductionPageComponent {
   next7Days: string[] = [];
   listTemp7Days: any[] = [];
 
+  images = [
+    'url(/assets/hellokitty2.jpg)',
+    'url(/assets/hellokitty1.jpg)',
+    'url(/assets/hellokitty3.jpg)',
+    'url(/assets/hellokitty4.jpg)',
+    'url(/assets/hellokitty5.jpg)',
+    'url(/assets/hellokitty6.jpg)',
+    'url(/assets/hellokitty7.jpg)',
+    'url(/assets/hellokitty8.jpg)',
+    'url(/assets/hellokitty9.jpg)',
+  ];
+  currentIndex = 0;
+
+  get nextBackground() {
+    return this.images[this.currentIndex % this.images.length];
+  }
+
+  updateBackground() {
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
+
   getInfoWeather(location:string) {
     this.next7Days = this.getNextSevenDays();
+    if(this.fadingDoneGif) {
+      this.updateBackground();
+    }
     this.weatherService.getCityCoord(location).subscribe({
       next: (info:any) => {
         let lat = info[0].lat;
@@ -59,7 +83,7 @@ export class IntroductionPageComponent {
                   this.todayMaxTemp = Math.round(dailyForecastInfo.list[0].temp.max);
                   this.todayMinTemp = Math.round(dailyForecastInfo.list[0].temp.min);
                   for(let i = 0; i < 7; i++) {
-                    this.listTemp7Days[i] = dailyForecastInfo.list[i].temp;
+                    this.listTemp7Days[i] = dailyForecastInfo.list[i];
                   }
                   console.log(dailyForecastInfo);
                 }
@@ -96,7 +120,6 @@ export class IntroductionPageComponent {
       const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
       days.push(dayName);
     }
-    console.log(days)
     return days;
   }
 

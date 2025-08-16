@@ -1,19 +1,31 @@
 <div class="container">
-    <div class="container-info">
-        <img src="/assets/intro.gif" oncontextmenu="return false;" draggable="false"
-         class="gif-middle" [ngClass]="{'city-selected' : this.info, 'done-fading' : this.fadingDoneGif}">
-        <img src="/assets/hello.gif" oncontextmenu="return false;" draggable="false"
+    <div class="container-info"  [ngStyle]="{'background-image': nextBackground, 'background-size': 'cover',
+       'background-position': 'center'}">
+        <img src="/assets/helloKittyHomeButton.png" oncontextmenu="return false;" draggable="false"
          class="welcome" (click)="reset()">
         <label class="name">for doan</label>
         @if (!this.fadingDoneGif) {
-            <label class="weather-app-label">Weather App</label>
+            <div class="announcement welcome-message" [ngClass]="{'city-selected' : this.info, 'done-fading' : this.fadingDoneGif}">
+                <h1>Welcome Doan to your weather app !</h1>
+                <label class="weather-app-label">Where shall we check the weather today? 🌤️</label>
+            </div>
+            <div class="announcement reminders" [ngClass]="{'city-selected' : this.info, 'done-fading' : this.fadingDoneGif}">
+                <h1>Reminders</h1>
+                <p class="weather-app-label">Drink water in this heat</p>
+                <p class="weather-app-label">You are my cutie</p>
+                <p class="weather-app-label">Eat and sleep well</p>
+            </div>
+            <div class="announcement question" [ngClass]="{'city-selected' : this.info, 'done-fading' : this.fadingDoneGif}">
+                <h3>Where shall we check the weather today? 🌤️</h3>
+            </div>
         }
         <div>
-            <div class="search">
+            <div class="search" [ngClass]="{'city-not-selected' : !this.info}">
                 <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
                 <img src="/assets/searchIcon.png" (click)="searchWithIcon()" draggable="false">
             </div>
         </div>
+
         @if (this.fadingDoneGif) {
                 <div class="current-temp-info">
                 <label class="location-name">{{this.info.name}}</label>
@@ -65,14 +77,14 @@
                             } @else {
                                 <label>{{day}}</label>
                             }
-                            <img src="https://openweathermap.org/img/wn/{{ this.info.weather[0].icon }}@2x.png" draggable="false">
+                            <img src="https://openweathermap.org/img/wn/{{ this.listTemp7Days[$index].weather[0].icon }}@2x.png" draggable="false">
                         </div>
                         <div class="right-side">
-                            <label>{{+this.listTemp7Days[$index].min | number:'1.0-0'}}°</label>
+                            <label>{{+this.listTemp7Days[$index].temp.min | number:'1.0-0'}}°</label>
                             <mat-progress-bar mode="determinate"
-                            [value]="(((this.listTemp7Days[$index].day) + (this.listTemp7Days[$index].night))/2 * 100) / this.listTemp7Days[$index].max" 
+                            [value]="(((this.listTemp7Days[$index].temp.day) + (this.listTemp7Days[$index].temp.night))/2 * 100) / this.listTemp7Days[$index].temp.max" 
                             class="custom-progress"></mat-progress-bar>
-                            <label>{{+this.listTemp7Days[$index].max | number:'1.0-0'}}°</label>
+                            <label>{{+this.listTemp7Days[$index].temp.max | number:'1.0-0'}}°</label>
                         </div>
                     </div>
                 }
