@@ -1,5 +1,4 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
 import { ApiService } from '../../services/api-service.service';
 import { NgClass } from '@angular/common';
@@ -18,9 +17,19 @@ import { UtilsService } from '../../services/utils.service';
 })
 export class IntroductionPageComponent {
   private clickSubject = new Subject<void>();
-  routerService = inject(Router);
-  weatherService = inject(ApiService);
-  utilsService = inject(UtilsService);
+  private weatherService = inject(ApiService);
+  private utilsService = inject(UtilsService);
+  private currentIndex = 0;
+  private images = [
+    'url(./assets/hellokitty2.jpg)',
+    'url(./assets/hellokitty3.jpg)',
+    'url(./assets/hellokitty4.jpg)',
+    'url(./assets/hellokitty6.jpg)',
+    'url(./assets/hellokitty7.jpg)',
+    'url(./assets/hellokitty8.jpg)',
+    'url(./assets/hellokitty9.jpg)',
+  ];
+  
   info: any;
   currentTemp: number = 0;
   todayMaxTemp: number = 0;
@@ -32,20 +41,6 @@ export class IntroductionPageComponent {
   next7Days: string[] = [];
   listTemp7Days: any[] = [];
   dayForecastHours: any[] = [];
-
-  images = [
-    'url(./assets/hellokitty2.jpg)',
-    'url(./assets/hangyodon.jpg)',
-    'url(./assets/hellokitty3.jpg)',
-    'url(./assets/hellokitty4.jpg)',
-    'url(./assets/hangyodon2.jpg)',
-    'url(./assets/hellokitty5.jpg)',
-    'url(./assets/hellokitty6.jpg)',
-    'url(./assets/hellokitty7.jpg)',
-    'url(./assets/hellokitty8.jpg)',
-    'url(./assets/hellokitty9.jpg)',
-  ];
-  currentIndex = 0;
 
   constructor() {
     this.clickSubject.pipe(
