@@ -41,7 +41,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
-#ApiKey
-/src/app/environnement.ts
-
 /WeatherApp-win32-x64
