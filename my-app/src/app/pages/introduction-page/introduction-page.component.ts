@@ -38,6 +38,7 @@ export class IntroductionPageComponent {
   currentFeelText: string = "";
   currentTempCondition: string = "";
   fadingDoneGif: boolean = false;
+  fadingDoneReset: boolean = false;
   next7Days: string[] = [];
   listTemp7Days: any[] = [];
   dayForecastHours: any[] = [];
@@ -52,9 +53,13 @@ export class IntroductionPageComponent {
 
   @ViewChild(SearchBarComponent) searchBar!: SearchBarComponent;
   reset() {
-    this.info = undefined;
-    this.searchBar.resetInput();
-    this.fadingDoneGif = false;
+    this.fadingDoneReset = true;
+    setTimeout(() => {
+      this.info = undefined;
+      this.searchBar.resetInput();
+      this.fadingDoneGif = false;
+      this.fadingDoneReset = false;
+    }, 300)
   }
 
   onDebouncedClick() {
