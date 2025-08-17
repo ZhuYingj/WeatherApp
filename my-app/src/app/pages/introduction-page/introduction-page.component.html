@@ -21,7 +21,7 @@
         <div>
             <div class="search" [ngClass]="{'city-not-selected' : !this.info}">
                 <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
-                <img src="./assets/searchIcon.png" (click)="searchWithIcon()" draggable="false">
+                <img src="./assets/searchIcon.png" (click)="searchWithIcon()" draggable="false" class="search-icon">
             </div>
         </div>
 
@@ -69,7 +69,7 @@
             <div class="predictions" [ngClass]="{'city-selected' : this.fadingDoneReset}">
                 <app-forecast-hours [listForecast]="dayForecastHours"></app-forecast-hours>
                 <div class="week-prediction">
-                    <label class="title-prediction">Prediction for the next 7 days</label>
+                    <label>Prediction for the next 7 days</label>
                     @for(day of this.next7Days; track $index) {
                         <div class="day">
                             <div class="left-side">
