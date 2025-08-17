@@ -72,18 +72,19 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.search-icon {
+#search-icon {
   transition: transform 0.2s ease-in-out;
 }
 
 .welcome:hover,
-.search-icon:hover {
+#search-icon:hover {
   transform: scale(1.02);
   cursor: pointer;
 }
 
 .welcome:hover:active,
-.search-icon:hover:active {
+#search-icon:hover:active,
+#search-icon.active{
   transform: scale(1.02) translateY(3px);
 }
 

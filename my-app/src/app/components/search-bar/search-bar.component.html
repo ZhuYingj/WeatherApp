@@ -1,4 +1,5 @@
-<input type="text" id="inputLocation" list="places" [(ngModel)]="location" (keyup.enter)="onPlaceInput(location)" placeholder="Enter city here">
+<input type="text" id="inputLocation" list="places" [(ngModel)]="location" 
+(keyup.enter)="onPlaceInput(location); simulateIconClickEffect();" placeholder="Enter city here">
 <datalist id="places">
     <option value="Laval">Laval</option>
     <option value="Montréal">Montréal</option>

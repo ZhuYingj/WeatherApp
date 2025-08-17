@@ -19,4 +19,15 @@ export class SearchBarComponent {
     resetInput() {
       this.location = "";
     }
+
+    simulateIconClickEffect() {
+      const icon = document.getElementById('search-icon');
+      if (!icon) return;
+
+      icon.classList.add('active');
+
+      setTimeout(() => {
+        icon.classList.remove('active');
+      }, 200);
+    }
 }

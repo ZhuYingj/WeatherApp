@@ -22,6 +22,7 @@ export class IntroductionPageComponent {
   private currentIndex = 0;
   private images = [
     'url(./assets/hellokitty2.jpg)',
+    'url(./assets/hellokitty1.jpg)',
     'url(./assets/hellokitty3.jpg)',
     'url(./assets/hellokitty4.jpg)',
     'url(./assets/hellokitty6.jpg)',
@@ -61,7 +62,7 @@ export class IntroductionPageComponent {
       this.fadingDoneReset = false;
     }, 300)
   }
-
+  
   onDebouncedClick() {
     this.clickSubject.next();
   }

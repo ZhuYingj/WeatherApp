@@ -21,7 +21,7 @@
         <div>
             <div class="search" [ngClass]="{'city-not-selected' : !this.info}">
                 <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
-                <img src="./assets/searchIcon.png" (click)="searchWithIcon()" draggable="false" class="search-icon">
+                <img src="./assets/searchIcon.png" (click)="searchWithIcon()" draggable="false" id="search-icon">
             </div>
         </div>
 
