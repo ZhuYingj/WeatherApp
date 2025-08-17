@@ -3,4 +3,5 @@ import { IntroductionPageComponent } from './pages/introduction-page/introductio
 
 export const routes: Routes = [
     { path: '', component: IntroductionPageComponent },
+    { path: '**', redirectTo: '' },
 ];
