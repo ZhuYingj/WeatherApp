@@ -234,6 +234,9 @@ app-search-bar {
     background-color: rgb(0, 0, 0, 0.25);
     border-radius: 30px;
     padding: 10px;
+    user-select: none;
+    pointer-events: auto;
+    cursor: default;
 }
 
 .predictions::-webkit-scrollbar {
