@@ -282,5 +282,11 @@ app-search-bar {
     .container-info {
         border: 0px solid pink;
     }
+    .city-not-selected {
+        position: absolute;
+        top: 75%;
+        left: 25%;
+        margin-top: 40px;
+    }
     
 }
