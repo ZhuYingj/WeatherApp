@@ -255,6 +255,14 @@ app-search-bar {
         width: 75px;
     }
 
+    .reminders {
+        top: 32%;
+    }
+
+    .welcome-message {
+        top: 12%;
+    }
+
     .current-temp-info {
         width: 90%;
     }
