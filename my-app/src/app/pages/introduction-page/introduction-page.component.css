@@ -25,12 +25,6 @@
     border-radius: 50px;
 }
 
-.gif-middle {
-    height: 450px;
-    width: 450px;
-    opacity: 1;
-}
-
 .city-selected {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -244,4 +238,42 @@ app-search-bar {
 
 .predictions::-webkit-scrollbar {
   display: none;
+}
+
+@media only screen and (max-width: 500px){
+    .container-info {
+        width: 100%;
+        height: 100%;
+        overflow-y: hidden;
+    }
+
+    .announcement {
+        width: 300px;
+    }
+
+    .welcome {
+        height: 75px;
+        width: 75px;
+    }
+
+    .current-temp-info {
+        width: 90%;
+    }
+
+    .predictions {
+        width: 90%;
+    }
+
+    .custom-progress {
+        width: 45px;
+    }
+
+    .week-prediction {
+        width: 100%;
+    }
+
+    .container-info {
+        border: 0px solid pink;
+    }
+    
 }

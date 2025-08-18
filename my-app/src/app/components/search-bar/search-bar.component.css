@@ -20,3 +20,11 @@ input:focus {
 * {
     font-family: "Roboto Condensed", sans-serif;
 }
+
+@media only screen and (max-width: 500px){
+    input {
+        width: 150px;
+        font-size: 1rem;
+    }
+    
+}
