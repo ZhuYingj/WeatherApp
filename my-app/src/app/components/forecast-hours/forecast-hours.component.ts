@@ -51,6 +51,7 @@ export class ForecastHoursComponent implements AfterViewInit, OnChanges {
     slider.addEventListener('mousemove', (e: MouseEvent) => {
       if (!this.isDown) return;
       e.preventDefault();
+      e.stopPropagation();
       const x = e.pageX - slider.getBoundingClientRect().left;
       const walk = (x - this.startX) * 2;
       slider.scrollLeft = this.scrollLeft - walk;
