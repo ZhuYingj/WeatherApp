@@ -243,7 +243,7 @@ app-search-bar {
   display: none;
 }
 
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 500px) and (orientation: portrait){
     .container-info {
         width: 100%;
         height: 100%;
@@ -289,6 +289,76 @@ app-search-bar {
         position: absolute;
         top: 75%;
         left: 25%;
+        margin-top: 40px;
+    }
+    
+}
+
+@media only screen and (max-height: 700px) and (orientation: landscape){
+    .container-info {
+        width: 100%;
+        height: 100%;
+    }
+
+    .announcement {
+        width: 150px;
+    }
+
+    .welcome {
+        height: 75px;
+        width: 75px;
+    }
+
+    .reminders {
+        top: 10%;
+        left: 10%;
+        height: 55%;
+    }
+
+    .weather-app-label {
+        font-size: 20px;
+    }
+
+    .welcome-message {
+        top: 10%;
+        left: 40%;
+        height: 55%;
+    }
+
+    .question {
+        top: 10%;
+        left: 70%;
+        height: 55%;
+    }
+
+    .question * {
+        font-size: 32px;
+    }
+
+    .current-temp-info {
+        width: 90%;
+        height: 40%;
+    }
+
+    .predictions {
+        width: 90%;
+    }
+
+    .custom-progress {
+        width: 45px;
+    }
+
+    .week-prediction {
+        width: 100%;
+    }
+
+    .container-info {
+        border: 0px solid pink;
+    }
+    .city-not-selected {
+        position: absolute;
+        top: 55%;
+        left: 35%;
         margin-top: 40px;
     }
     
