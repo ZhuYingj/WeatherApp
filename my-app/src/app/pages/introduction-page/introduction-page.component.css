@@ -383,4 +383,8 @@ app-search-bar {
     .info-case {
         width: 250px;
     }
+
+    .week-prediction {
+        width: 100%;
+    }
 }
