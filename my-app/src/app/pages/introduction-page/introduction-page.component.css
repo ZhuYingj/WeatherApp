@@ -387,4 +387,8 @@ app-search-bar {
     .week-prediction {
         width: 100%;
     }
+
+    .location-name {
+        white-space: nowrap;
+    }
 }
