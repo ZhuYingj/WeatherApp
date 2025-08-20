@@ -32,8 +32,10 @@
                     <label class="current-temp">{{this.currentTemp + "°"}}</label>
                     <img src="https://openweathermap.org/img/wn/{{ this.info.weather[0].icon }}@2x.png" draggable="false">
                 </div>
-                <label class="current-condition">{{this.currentTempCondition}}</label>
-                <label class="current-condition">↑ {{this.todayMaxTemp}}° ↓ {{this.todayMinTemp}}°</label>
+                <div class="max-low-temp">
+                    <label class="current-condition">{{this.currentTempCondition}}</label>
+                    <label class="current-condition">↑ {{this.todayMaxTemp}}° ↓ {{this.todayMinTemp}}°</label>
+                </div>
                 <div class="info-wind-feel">
                     <div class="info-case wind">
                         <div class="container-wind-label">

@@ -52,6 +52,11 @@
     top: 25%;
 }
 
+.max-low-temp {
+    display: flex;
+    flex-direction: column;
+}
+
 .question {
     position: absolute;
     top: 70%;
@@ -338,28 +343,44 @@ app-search-bar {
     .current-temp-info {
         width: 90%;
         height: 40%;
+        flex-direction: row;
+    }
+
+    .current-temp-img {
+        position: absolute;
+        top: 40%;
+    }
+
+    .current-temp-img img {
+        height: 75px;
+    }
+
+    .current-temp {
+        font-size: 50px;
+    }
+
+    .max-low-temp {
+        position: absolute;
+        top: 55%;
+        left: 10%;
     }
 
     .predictions {
-        width: 90%;
-    }
-
-    .custom-progress {
-        width: 45px;
-    }
-
-    .week-prediction {
-        width: 100%;
+        width: 65%;
     }
 
     .container-info {
         border: 0px solid pink;
     }
+
     .city-not-selected {
         position: absolute;
         top: 55%;
-        left: 35%;
+        left: 33%;
         margin-top: 40px;
     }
-    
+
+    .info-case {
+        width: 250px;
+    }
 }
