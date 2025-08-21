@@ -346,7 +346,7 @@ app-search-bar {
 
     .current-temp-info {
         width: 40%;
-        height: 72%;
+        height: 70%;
         flex-direction: column;
         margin-top: 55px;
     }
