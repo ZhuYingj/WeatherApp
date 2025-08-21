@@ -18,12 +18,12 @@
                 <h3>Where shall we check the weather today? 🌤️</h3>
             </div>
         }
-        <div>
-            <div class="search" [ngClass]="{'city-not-selected' : !this.info}">
-                <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
-                <img src="./assets/searchIcon.png" (click)="searchWithIcon()" draggable="false" id="search-icon">
-            </div>
+        
+        <div class="search" [ngClass]="{'city-not-selected' : !this.info}">
+            <app-search-bar (placeChange)="getInfoWeather($event)" [ngClass]="{'isActive' : this.fadingDoneGif}"></app-search-bar>
+            <img src="./assets/searchIcon.png" (click)="searchWithIcon()" draggable="false" id="search-icon">
         </div>
+        
 
         @if (this.fadingDoneGif) {
             <div class="current-temp-info" [ngClass]="{'city-selected' : this.fadingDoneReset}">
