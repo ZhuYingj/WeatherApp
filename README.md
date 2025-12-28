@@ -16,4 +16,4 @@ To help me practice some api uses and generally coding.
 
 # Hosted on Vercel
 
-hellokittyweather.vercel.app
+https://hellokittyweather.vercel.app
