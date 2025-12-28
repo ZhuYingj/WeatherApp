@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 
 /WeatherApp-win32-x64
+/src/app/environnement.ts
