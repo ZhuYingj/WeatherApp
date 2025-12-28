@@ -43,4 +43,4 @@ Thumbs.db
 
 /WeatherApp-win32-x64
 src/app/environment.ts
-WeatherApp/my-app/src/app/environnement.ts
+src/app/environments.ts
