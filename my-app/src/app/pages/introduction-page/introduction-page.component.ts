@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { ForecastHoursComponent } from '../../components/forecast-hours/forecast-hours.component';
 import { UtilsService } from '../../services/utils.service';
+
 @Component({
   selector: 'app-introduction-page',
   imports: [SearchBarComponent, NgClass, MatProgressBarModule, CommonModule, ForecastHoursComponent],
@@ -43,6 +44,7 @@ export class IntroductionPageComponent {
   next7Days: string[] = [];
   listTemp7Days: any[] = [];
   dayForecastHours: any[] = [];
+
 
   constructor() {
     this.clickSubject.pipe(
@@ -135,4 +137,5 @@ export class IntroductionPageComponent {
       })
     }, 300);
   }
+
 }

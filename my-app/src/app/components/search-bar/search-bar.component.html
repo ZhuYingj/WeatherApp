@@ -1,13 +1,12 @@
-<input type="text" id="inputLocation" list="places" [(ngModel)]="location" 
-(keyup.enter)="onPlaceInput(location); simulateIconClickEffect();" placeholder="Enter city here">
-<datalist id="places">
-    <option value="Laval">Laval</option>
-    <option value="Montréal">Montréal</option>
-    <option value="Toronto">Toronto</option>
-    <option value="Vancouver">Vancouver</option>
-    <option value="Ottawa">Ottawa</option>
-    <option value="Calgary">Calgary</option>
-    <option value="Winnipeg">Winnipeg</option>
-    <option value="Québec">Québec</option>
-    <option value="Edmonton">Edmonton</option>
-</datalist>
+<div class="autocomplete-container">
+  <input 
+    type="text" 
+    class="suggestion-input"
+    [value]="suggestion"
+    disabled
+    tabindex="-1">
+
+<input type="text" id="inputLocation" class="main-input" [(ngModel)]="location" (ngModelChange)="onSearchChange($event)"
+(keyup.enter)="onPlaceInput(location); simulateIconClickEffect();" (keydown.tab)="acceptSuggestion($event)"
+    (keydown.arrowRight)="acceptSuggestion($event)"placeholder="Enter city here">
+</div>
