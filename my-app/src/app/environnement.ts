@@ -1,4 +1,4 @@
-const API_KEY = process.env['API_KEY'] || ''
+const API_KEY = (typeof process !== 'undefined' && process.env?.['API_KEY']) || '';
 export const weatherApi = (lat: string, long: string) => 
     `https://api.openweathermap.org/data/2.5/weather?lat=${(lat)}&lon=${long}&units=metric&appid=` + API_KEY;
 export const getApiUrl = (city: string) => 
