@@ -1,6 +1,6 @@
 # Hello Kitty Weather App
 
-This project was made by using Angular CLI. It is just a small little project for my girlfriend. A themed hello-kitty weather app.
+This project was made by using Angular CLI. It is just a small little project for my girlfriend. A themed hello-kitty weather app. There is an autocompletion feature to minimise the efforts.
 
 # API
 
