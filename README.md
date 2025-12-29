@@ -10,7 +10,7 @@ All the apis used on this project are from https://openweathermap.org/api
 
 https://github.com/lutangar/cities.json
 
-# Purpose
+# Purpose & Front End Project
 
 To help me practice some api uses and generally coding.
 
